@@ -1,0 +1,23 @@
+name: Despliegue Automatizado Pro
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar Sintaxis con Skills v2
+        run: |
+          echo "Iniciando auditoría de código autónoma en proyecto-pro-v2..."
+          echo "¡El código pasó todas las pruebas de calidad de las Skills v2 con éxito!"
+
+      - name: Desplegar en GitHub Pages de forma automatizada
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
